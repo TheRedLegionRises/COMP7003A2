@@ -21,6 +21,8 @@ def parse_ethernet_header(hex_data):
             parse_udp_header(payload)
         elif protocol == "06":
             parse_tcp_header(payload)
+        elif protocol == "01":
+            parse_icmp_header(payload)
     else:
         print(f"  {'Unknown EtherType:':<25} {ether_type:<20} | {int(ether_type, 16)}")
         print("  No parser available for this EtherType.")
@@ -211,5 +213,4 @@ def parse_tcp_header(hex_data):
     print(f"  {'Urgent Pointer:':<25} {hex_data[76:80]:<20} | {urgent_pointer}")
     # print(f"  {'Payload:':<25} {binary_string:<20} | {int(binary_string, 2)}")
 
-
-
+def parse_icmp_header(hex_data):
